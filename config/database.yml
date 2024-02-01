@@ -1,0 +1,32 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 20 } %>
+  username: <%= ENV.fetch("POSTGRESUSERNAME") %>
+  password: <%= ENV.fetch("POSTGRESPASSWORD") %>
+
+development:
+  <<: *default
+  host: localhost
+  database: rails_angular_development
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 20 } %>
+  username: <%= ENV.fetch("POSTGRESUSERNAME") %>
+  password: <%= ENV.fetch("POSTGRESPASSWORD") %>
+  database: rails_angular_test
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV["DATABASE_URL"] %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 20 } %>
+  url: <%= ENV["DATABASE_URL"] %>
